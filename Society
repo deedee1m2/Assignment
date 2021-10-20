@@ -1,0 +1,145 @@
+import java.io.*;//import all input output packages
+import java.nio.file.*;
+
+public class Member {//create class
+
+   private String name;//attributes
+    private String address; 
+   public int fee = 50;
+
+   public static void main(String[] args){//man method
+
+    File memberships = new File("C:\\Users\\Student\\JavaProgramming\\HelloWorld\\src\\Members.java\\memberships.txt");//creating file path
+    
+    System.out.println("Does this file exist? " + memberships.exists());//checking does path exist
+    System.out.println("is this a directory? " + memberships.isDirectory());//determines if its a directory or not
+    System.out.println("is this a file? " + memberships.isFile());//checks it is a file
+    System.out.println("File name is: " + memberships.getName());//gets file name
+    System.out.println("Path: " + memberships.getAbsolutePath());//gets file path
+   // Path path
+     //       = Paths.get("C:\\Users\\Student\\JavaProgramming\\HelloWorld\\src\\Members.java\\memberships.txt");
+    //Path normalizedPath = path.normalize();
+  
+        // print normalized path
+      //  System.out.println("\nNormalized Path : "
+        //                   + normalizedPath);
+  
+    
+    try {//try block
+        FileReader reader = new FileReader("C:\\Users\\Student\\JavaProgramming\\HelloWorld\\src\\Members.java\\memberships.txt");//try read file
+        BufferedReader buff = new BufferedReader(reader);//allows a file line to be read and printed out
+    
+    String txtread;//create string
+    while ((txtread = buff.readLine()) !=null){// path equal to buff which will read and print lines, is not equal to null
+        System.out.println(txtread+ "\n");//print path
+    }
+    buff.close();//close bufferedreader
+    
+    } catch (FileNotFoundException e) {//catch the exception if it doesn't find file
+        // TODO Auto-generated catch block
+        e.printStackTrace();//print errors if it doesn't find file
+    } catch (IOException e) {//catches general exeptions
+        // TODO Auto-generated catch block
+        e.printStackTrace();//print errors
+    }
+
+   }
+ public Member(String nameArgs, String add, int feeArgs)//member method with name, address and fee
+    {
+         name=nameArgs;//attributes
+         address=add;
+         fee=feeArgs;
+    }
+    
+   public String getName(){//get name
+        return name;//return name
+    }
+   public String getAddress(){//get address
+        return address;//return address
+    }
+    
+   public int getFee()//get fee
+    {
+        return fee;//return fee
+    }
+}
+    
+  
+
+       public class StandardMember extends Member {//create class that extends from member class
+    
+        private int fee;//attribute
+    
+            public StandardMember(String nameArgs, String add, int feeArgs) {//standard member that holds name, add & fee
+                super(nameArgs, add, 50);//inherited from super class
+               
+            }
+            
+            public int getFee()//get fee
+            {
+                return fee;//return fee
+          
+        }
+    }
+    public class SeniorMember extends Member {//creating senior member class that extends attributes from member class
+    
+    private int fee;//fee attribute
+
+        public SeniorMember(String nameArgs, String add, int feeArgs) {//senior member method holding name, address & fee
+            super(nameArgs, add, feeArgs);//inherited from super class
+            
+        }
+        
+        public int getFee()//get fee
+        {
+            return fee;//returns fee
+      
+    }
+}
+public class ManagementCttee extends Society{//create class that extends from society class
+    public ManagementCttee(String nameArgs, String add){}//managementctte holds name and address attributes
+
+public void addCtteeMember(SeniorMember member ){}//operations
+public void removeCtteeMember(String name){}
+}
+import java.util.ArrayList;//importing array list
+ class Society {//create society class
+
+    private String name;//private name
+   
+    public static void main(String[] args){//main method
+    }
+    
+    
+    public void addMember(String name, String address){//method add member (that holds name and address)
+    ArrayList<Member> mymembers = new ArrayList<Member>();//creating an array list for members
+    Member d=new Member("Ellie","manchester", 50);//new members
+    Member e=new Member("Daniel","manchester", 50);
+    Member f=new Member("Sammy","liverpool", 50);
+    
+    System.out.println(mymembers);
+
+    }
+
+    public void addSeniorMember(String name, String address){//method add senior member that holds name and address
+        ArrayList<SeniorMember> mySeniormembers = new ArrayList<SeniorMember>();//array list for senior members
+        SeniorMember a=new SeniorMember("Jack","manchester", 100);//new senior members
+        SeniorMember b=new SeniorMember("Dan","london", 100);
+        SeniorMember c=new SeniorMember("Sam","manchester", 100);
+    }
+
+    public void addManagementCttee(String name, String address){//method add management committee, holding name and address
+        ArrayList<ManagementCttee> myManagementCttee = new ArrayList<ManagementCttee>();// new array list
+        ManagementCttee g=new ManagementCttee("Marty","manchester");//new management committee members
+        ManagementCttee b=new ManagementCttee("Denim","london");
+        ManagementCttee c=new ManagementCttee("Dale","manchester");
+       
+    }
+
+    public void addSeniorMember(String name, String address, int fee){}//calling senior member method holding name, address & fee
+    public void addCtteeMember(SeniorMember member){}//call committee member that holds senior members
+    public int getTotalFee(int fee){//call get total fee that holds fee
+        return fee;//returns fee
+    }
+   
+}
